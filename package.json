@@ -16,8 +16,32 @@
       {
         "command": "gitviz.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "gitviz.revealGraphView",
+        "title": "GitViz: Show Graph View"
       }
-    ]
+    ],
+    "viewsContainers": {
+      "panel": [
+        {
+          "id": "gitviz-panel",
+          "title": "GitViz",
+          "icon": ""
+        }
+      ]
+    },
+    "views": {
+      "gitviz-panel": [
+        {
+          "type": "webview",
+          "id": "gitviz.graphView",
+          "name": "GitViz: Git Graph View",
+          "icon": "",
+          "contextualTitle": "Git Graph View"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",

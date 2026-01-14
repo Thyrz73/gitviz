@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <!-- $$CSP$$ sera remplacé dans le provider -->
+    <meta http-equiv="Content-Security-Policy" content="$$CSP$$" />
+    <title>GitViz : Commit graph</title>
+    <!-- $$STYLES$$ sera remplacé par l’URI webview du CSS -->
+    <link rel="stylesheet" href="$$STYLES$$" nonce="$$NONCE$$" />
+  </head>
+  <body>
+    <h1>GitViz : Commit Graph</h1>
+    <!--
+    viewBox définit un repère simple. Tu peux choisir des x/y "à la main"
+    pour disposer tes commits en lignes/colonnes.
+  -->
+    <svg
+      viewBox="0 0 600 200"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-label="Graphe de commits"
+    >
+      <!-- ARÊTES (parents) -->
+      <!-- edge: C3 (main) -> C2 (main) -->
+      <line class="edge" x1="100" y1="50" x2="200" y2="50" />
+      <!-- edge: C2 (main) -> C1 (main) -->
+      <line class="edge" x1="200" y1="50" x2="300" y2="50" />
+      <!-- edge: F2 (feature) -> F1 (feature) -->
+      <line class="edge" x1="200" y1="130" x2="300" y2="130" />
+      <!-- edge: merge: M (main) -> C1 (main) -->
+      <path class="edge" d="M 400 90 C 360 60, 330 60, 300 50" />
+      <!-- edge: merge: M (main) -> F1 (feature) -->
+      <path class="edge" d="M 400 90 C 360 120, 330 130, 300 130" />
+
+      <!-- NOEUDS (commits) -->
+      <!-- main: C3, C2, C1 -->
+      <g>
+        <circle class="node commit" cx="100" cy="50" r="8" />
+        <text class="label" x="90" y="35">C3</text>
+        <circle class="node commit" cx="200" cy="50" r="8" />
+        <text class="label" x="190" y="35">C2</text>
+        <!-- <circle class="node commit" cx="300" cy="50" r="8"/><text class="label" x="290" y="35">C1</text> -->
+      </g>
+
+      <!-- feature: F2, F1 -->
+      <g>
+        <circle class="node feature" cx="200" cy="130" r="8" />
+        <text class="label" x="190" y="115">F2</text>
+        <circle class="node feature" cx="300" cy="130" r="8" />
+        <text class="label" x="290" y="115">F1</text>
+      </g>
+
+      <!-- merge commit: M (sur main, position intermédiaire) -->
+      <g>
+        <circle class="node commit" cx="400" cy="90" r="8" />
+        <text class="label" x="390" y="75">M</text>
+      </g>
+      <g>
+        <!-- Exemple d'info-bulle sur un commit -->
+        <circle class="node commit" cx="300" cy="50" r="8">
+          <title>Commit C1 — auteur: Alice, date: 2026-01-06</title>
+        </circle>
+      </g>
+
+      <g>
+        <circle class="node commit" cx="300" cy="50" r="8" />
+        <text class="label" x="290" y="35">C1</text>
+        <title>C1 (main) — parents: C2, F1 — "Fix bug #123"</title>
+      </g>
+    </svg>
+
+    <!-- $$SCRIPT$$ sera remplacé par l’URI webview du JS -->
+    <script nonce="$$NONCE$$" src="$$SCRIPT$$"></script>
+  </body>
+</html>
